@@ -13,15 +13,13 @@ Requirements
 
 How to run
 ==========
-1. Follow [these instructions](https://ohdsi.github.io/Hades/rSetup.html) for seting up your R environment, including RTools and Java. 
-
-2. Open your study package in RStudio. Use the following code to install all the dependencies:
+1. Open your study package in RStudio. Use the following code to install all the dependencies:
 
     ```r
-    renv::restore()
+    renv::deactivate()
     ```
 
-3. In RStudio, select 'Build' then 'Install and Restart' to build the package.
+2. In RStudio, select 'Build' then 'Install and Restart' to build the package.
 
    Once installed, you can execute the study by modifying and using the code below. For your convenience, this code is also provided under `extras/CodeToRun.R`:
 
@@ -70,7 +68,7 @@ How to run
             databaseId = databaseId,
             databaseName = databaseName,
             databaseDescription = databaseDescription,
-            verifyDependencies = TRUE,
+            verifyDependencies = FALSE,
             createCohorts = TRUE,
             synthesizePositiveControls = TRUE,
             runAnalyses = TRUE,
@@ -78,22 +76,7 @@ How to run
             maxCores = maxCores)
     ```
 
-4. Upload the file ```export/Results_<DatabaseId>.zip``` in the output folder to the study coordinator:
-
-	```r
-	uploadResults(outputFolder, privateKeyFileName = "<file>", userName = "<name>")
-	```
-	
-	Where ```<file>``` and ```<name<``` are the credentials provided to you personally by the study coordinator.
-		
-5. To view the results, use the Shiny app:
-
-	```r
-	prepareForEvidenceExplorer("Result_<databaseId>.zip", "/shinyData")
-	launchEvidenceExplorer("/shinyData", blind = TRUE)
-	```
-  
-  Note that you can save plots from within the Shiny app. It is possible to view results from more than one database by applying `prepareForEvidenceExplorer` to the Results file from each database, and using the same data folder. Set `blind = FALSE` if you wish to be unblinded to the final results.
+3. Share the file export/Results_<DatabaseId>.zip in the output folder to the study coordinator
 
 License
 =======
